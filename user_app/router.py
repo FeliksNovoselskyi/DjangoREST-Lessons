@@ -1,5 +1,5 @@
 import rest_framework.routers as routers
-from .viewsets.user import UserViewSet, AuthUserViewSet
+from .viewsets.user import UserViewSet
 
 from rest_framework.authentication import SessionAuthentication
 
@@ -9,10 +9,6 @@ router.register(
     'users',
     UserViewSet
 )
-router.register(
-    'auth',
-    AuthUserViewSet,
-    basename="auth"
-)
+
 urlpatterns = router.urls
 
