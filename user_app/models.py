@@ -1,6 +1,9 @@
 from django.db import models
+from django.contrib.auth.models import User
 
-class CustomUser(models.Model):
-    email = models.EmailField(max_length = 50, unique = True, null = False)
-    username = models.CharField(max_length = 50, null = True, unique=True)
-    password = models.CharField(max_length = 255, null = False)
+
+class Car(models.Model):
+    
+    brand = models.CharField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="cars")
+
