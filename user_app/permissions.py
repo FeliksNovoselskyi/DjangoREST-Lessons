@@ -3,7 +3,7 @@ from rest_framework.permissions import BasePermission
 
 class IsOwner(BasePermission):
     
-    message = "You are not owner of this car"
+    message = "You are not owner of this object"
     
     def has_permission(self, request, view):
         if request.user.is_authenticated:

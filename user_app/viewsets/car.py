@@ -2,13 +2,14 @@ from rest_framework.authentication import SessionAuthentication, TokenAuthentica
 from rest_framework.permissions import IsAuthenticated, AllowAny
 import rest_framework.viewsets as viewsets
 from rest_framework.response import Response
-from user_app.serializers.user import UserSerializer
 from django.shortcuts import get_object_or_404
+from user_app.serializers.user import UserSerializer
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from user_app.models import Car
 from user_app.serializers.car import CarSerializer
 from user_app.permissions import IsOwner, IsSuperUser, NotAllowedAny
+
 
 
 class CarViewSet(viewsets.ModelViewSet):
@@ -19,9 +20,6 @@ class CarViewSet(viewsets.ModelViewSet):
     authentication_classes = [
         JWTAuthentication
     ]
-    
-    
-    # lookup_url_kwarg = "car_id"
     
     def get_permissions(self):
         
@@ -35,8 +33,6 @@ class CarViewSet(viewsets.ModelViewSet):
     # 1
     def retrieve(self, request, pk):
         car = get_object_or_404(Car.objects.all(), pk = pk)
-        
-        
         
         self.check_object_permissions(request=request, obj=car)
         

@@ -16,15 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-)
+from user_app.api_views.car import CarApiView, CarObjectApiView, car_object_api_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include('user_app.router')),
     path(r'auth/', include('djoser.urls')),
-    path(r'auth/', include('djoser.urls.jwt'))
+    path(r'auth/', include('djoser.urls.jwt')),
+    path("api/cars/", CarApiView.as_view()),
+    path("api/cars/<int:car_id>/", car_object_api_view)
 ]
+
+
