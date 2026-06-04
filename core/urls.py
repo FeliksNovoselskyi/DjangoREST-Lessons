@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from user_app.api_views.car import CarApiView, CarObjectApiView, car_object_api_view
 
 
 urlpatterns = [
@@ -24,8 +23,7 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path(r'auth/', include('djoser.urls')),
     path(r'auth/', include('djoser.urls.jwt')),
-    path("api/cars/", CarApiView.as_view()),
-    path("api/cars/<int:car_id>/", car_object_api_view)
+    path('api/', include('user_app.router'))
 ]
 
 
